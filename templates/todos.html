@@ -1,0 +1,64 @@
+
+{% extends 'layout.html' %}
+
+{% block body %}
+{% if todos %}
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+
+            <h4 class="text-center my-3 pb-3">To Do List</h4>
+            {% block search %}
+<form action="{{url_for('searchtodo')}}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+  <input type="search" name="keywoard"id="form1" class="form-control" placeholder="Search..." />
+    <button type="submit " class="btn btn-secondary"><i class="fas fa-search" aria-hidden="true"></i></button>
+  
+</form>
+
+{% endblock search %}
+<br>
+<br>
+
+            
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Todo item</th>
+                  
+                  <th scope="col">Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo in todos  %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{todo.todo}}</td>
+                  <td> {{ todo.deadline }}</td>
+                  
+                  <td>
+                    <a href="/checktodo/{{todo.id}}" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></a>
+                    <a href="/edittodo/{{todo.id}}" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
+                    <a href="/deletetodo/{{todo.id}}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+               
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<div class="alert alert-danger"> There is no Todo.</div>
+{% endif %}
+
+
+{% endblock body %}

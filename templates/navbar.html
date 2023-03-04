@@ -1,0 +1,77 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="/">
+          daily
+        </a>
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          {% if  session["logged_in"]%}
+          <li class="nav-item">
+            
+            <a class="nav-link" href="/movies">Movies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/recipes">Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/todos">Todo</a>
+          </li>
+          {% endif %}
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        
+        {% if  session["logged_in"]%}
+       {% block search %}
+          <li class="nav-item">
+          
+          </li>
+          {% endblock %}
+          
+       
+        <li class="nav-item">
+          
+          
+          
+          <div class="dropdown">
+          <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" href="/dashboard">Dashboard</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/addmoviepage">Add Movie</a>
+              <a class="dropdown-item" href="/addrecipepage">Add Recipe</a>
+              <a class="dropdown-item" href="/addtodopage">Add  Todo</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Sign Out</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Sign In</a>
+        </li>
+        {% endif %}
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        
+      </ul>
+   
+ 
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->

@@ -1,0 +1,59 @@
+
+
+
+{% extends 'layout.html' %}
+
+{% block body %}
+  <!-- Team member -->
+  {% if recipes  %}
+
+  <div class="container">
+    <h5 class="section-title h1">Recipes</h5>
+    {% block search %}
+    <form action="{{url_for('searchrecipe')}}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
+      <input type="search" name="keywoard"id="form1" class="form-control" placeholder="Search..." />
+        <button type="submit " class="btn btn-secondary"><i class="fas fa-search" aria-hidden="true"></i></button>
+      
+    </form>
+    
+    {% endblock search %}
+    <br>
+    <br>
+    <div class="row">
+        {% for  recipe in recipes  %}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" >
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                
+                                <div class="card-body text-center">
+                                    
+                                    <h4 class="card-title">{{recipe.name}}</h4>
+                                    <p class="card-text">{{recipe.category}}</p>
+                                    <p class="card-text">{{recipe.ingredients}}</p>
+                                    <p class="card-text">{{recipe.preparation}}</p>
+                                    <a  href="/editrecipe/{{recipe.id}}" class="btn btn-outline-primary"><i class="far fa-edit"></i></a>
+              <a href="/deleterecipe/{{recipe.id}}" class="btn btn-outline-danger" ><i class="fa-solid fa-trash"></i></a>
+
+                                   
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div> 
+            </div>
+{% else %}
+<div class="alert alert-danger">Recipe can not found.</div>
+{% endif %}
+
+{% endblock body %}
+ 
+
+
+
+
